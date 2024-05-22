@@ -1,0 +1,157 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "easy_release_automation"
+version = "0.4.0.dev0"
+authors = [
+  { name = "Claus Seibold", email = "claus.seibold@ingenics-digital.com" },
+  { name = "David Kauschke", email = "david.kauschke@ingenics-digital.com" },
+  { name = "Martin Lautenbacher", email = "martin.lautenbacher@ingenics-digital.com" },
+]
+
+description = "Easy-Release-Automation for Multi-Package-Versioning."
+readme = { file = "README.md", content-type = "text/markdown" }
+requires-python = ">=3.9"
+keywords = [
+  "EasyReleaseAutomation",
+  "git",
+  "AutomatedModification",
+  "AutomatedTesting",
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: MIT License",
+  "Operating System :: OS Independent",
+]
+
+dependencies = [
+  "pip==24.0",
+  "pip-tools==7.4.1",
+  "pyyaml>=6.0",
+  "GitPython==3.1.43",
+  "ruamel.yaml==0.18.6",
+  "tomlkit==0.12.5",
+  "pydantic==2.7.1",
+]
+
+[project.optional-dependencies]
+test = [
+  'black == 24.4.2',
+  'Flake8 == 3.8.0',
+  'flakehell == 0.9.0',
+  'mypy == 1.3.0',
+  'tox == 4.15.0',
+  'pytest == 7.1.2',
+  'pytest-cov == 2.12.1',
+  'pytest-html == 3.1.1',
+  'pytest-mock == 3.1.1',
+  'deepdiff == 7.0.1',
+  'license-header-check==0.2.1',
+  'build==1.2.1',
+]
+
+[project.scripts]
+easy-release-automation = "easy_release_automation.easy_release_automation:main"
+
+[project.entry-points."repository.validation"]
+# Validation Plugins
+validate_via_shell = "easy_release_automation.plugins.validation.shell_validator:ShellValidationPlugin"
+
+[project.entry-points."repository.modification"]
+# Modification Plugins
+## Python Requirement Updaters
+update_requirements = "easy_release_automation.plugins.modification.python_requirements.requirements_updater:RequirementsUpdaterPlugin"
+update_and_compile_requirements = "easy_release_automation.plugins.modification.python_requirements.requirements_updater_and_compiler:RequirementsUpdaterAndCompilerPlugin"
+## Configuration File Updaters
+cfg_file_updater = "easy_release_automation.plugins.modification.configuration_files.raw_cfg_file_updater:RAWCfgUpdaterPlugin"
+yaml_file_updater = "easy_release_automation.plugins.modification.configuration_files.yaml_file_updater:YamlUpdaterPlugin"
+yaml_file_updater_v2 = "easy_release_automation.plugins.modification.configuration_files.yaml_file_updater_v2:YamlUpdateV2Plugin"
+## Changelog Updaters
+changelog_version_updater = "easy_release_automation.plugins.modification.changelog.changelog_version_updater:ChangelogVersionUpdaterPlugin"
+changelog_unreleased_setter = "easy_release_automation.plugins.modification.changelog.changelog_unreleased_setter:ChangelogUnreleasedSetterPlugin"
+## Generic
+regex_replacer = "easy_release_automation.plugins.modification.regex_replacer:RegexReplacerPlugin"
+modify_via_shell = "easy_release_automation.plugins.modification.shell_modifier:ShellModificationPlugin"
+
+####################################---Linting-Configuration---####################################
+
+[tool.black]
+extend-exclude = '/(doc|docs)/'
+line_length = 100
+target-version = ['py39']
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.coverage.report]
+precision = 2
+
+[tool.coverage.paths]
+source = ["src/"]
+
+[tool.flakehell]
+baseline = "flakehell_baseline.txt"
+doctests = true
+enable_extensions = "G"
+format = "colored"
+show_source = true
+statistics = false
+
+accept_encodings = "utf-8"
+docstring_style = "google"
+inline_quotes = "double"
+max_complexity = 6
+max_line_length = 100
+
+[tool.flakehell.plugins]
+"flake8-*" = [
+  "+*",
+  "-D401", # Ignore grammar
+  "-RST*", # Disable RST as we use google docstrings
+]
+"flake8-commas" = [
+  "+*",    # Allow missing trailing commas to be compatible to black
+  "-C812",
+  "-C813",
+  "-C815",
+  "-C816",
+]
+flake8-docstrings = [
+  "-D400", # Don't require period in first line
+]
+mccabe = ["+*"]
+"pep8-naming" = ["+*"]
+pycodestyle = [
+  "+*",    # This rule does not comply with PEP 8
+  "-W503", # Ignore whitespace before ':' to be compatible to black
+  "-E203",
+]
+pyflakes = ["+*"]
+pylint = ["+*"]
+
+
+[tool.flakehell.exceptions."**/__init__.py"]
+pyflakes = ["-F401"] # Allow unused imports
+
+[tool.flakehell.exceptions."**/exceptions.py"]
+flake8-docstrings = ["-D101"] # Exceptions don't need docstrings
+
+[tool.flakehell.exceptions."**/test_*.py"]
+flake8-bandit = ["-S101"]  # S101: Allow asserts in tests
+flake8-docstrings = ["-*"] # Tests don't need docstrings
+
+######################################---MyPy-Configuration---#####################################
+
+[tool-mypy]
+python_version = 3.9
+namespace_packages = true
+
+plugins = "pydantic.mypy"
+show_error_codes = true
+
+[[tool.mypy.overrides]]
+module = ["easy_release_automation.*", "git", "yaml.*", "ruamel.*"]
+ignore_missing_imports = true

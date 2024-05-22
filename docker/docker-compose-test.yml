@@ -1,0 +1,22 @@
+# Docker-Compose to execute the release-process.
+#
+# Authors:
+#    - Claus Seibold <claus.seibold@ingenics-digital.com>
+# 
+# Copyright (c) 2024 Ingenics Digital GmbH
+# 
+# SPDX-License-Identifier: MIT
+#
+
+version: "3.4"
+
+services:
+  era-test-env:
+    build:
+      context: .
+      dockerfile: Dockerfile.testpipeline
+    image: "${IMAGE_NAME:-python-era-testing:latest}"
+    working_dir: "${DEST_BUILD_DIR:-/host/era}"
+    volumes:
+      - ./../:/host/era:rw
+    command: tox -e test

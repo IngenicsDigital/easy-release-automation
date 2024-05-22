@@ -1,0 +1,42 @@
+# Authors:
+#    - Claus Seibold <claus.seibold@ingenics-digital.com>
+#    - David Kauschke <david.kauschke@ingenics-digital.com>
+#
+# Copyright (c) 2024 Ingenics Digital GmbH
+#
+# SPDX-License-Identifier: MIT
+#
+#
+
+global_config:
+  git_user_email: "david.kauschke@ingenics-digital.com"
+  git_user_name: "David.Kauschke"
+  tag_policy: "skip" # "skip": skip repository if tag exists, "ovr": override existing tag
+
+repositories:
+  easy-release-automation:
+    version: &easy_release_automation_version "0.4.0.dev0"
+    url: git@github.com:IngenicsDigital/easy-release-automation.git
+    stable_branch: stable
+    main_branch: main
+
+    plugins:
+      release_modification:
+        - changelog_version_updater:
+            {
+              file_path_relative: "Changelog.md",
+              version: *easy_release_automation_version,
+            }
+        - regex_replacer: 
+            { 
+              file_path_relative: "pyproject.toml",
+              regex: 'version = "0.4.0.dev0"',
+              replacement: 'version = "0.4.0.dev0"',
+            }
+      release_validation:
+        - validate_via_shell: { command: ["tox", "-e", "lint"] }
+        - validate_via_shell: { command: ["tox", "-e", "mypy"] }
+        - validate_via_shell: { command: ["tox", "-e", "test"] }
+      merge_back_finalization:
+        - changelog_unreleased_setter: { file_path_relative: "Changelog.md" }
+
