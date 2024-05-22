@@ -1,0 +1,55 @@
+# Authors:
+#    - Claus Seibold <claus.seibold@ingenics-digital.com>
+# 
+# Copyright (c) 2024 Ingenics Digital GmbH
+# 
+# SPDX-License-Identifier: MIT
+
+global_config: 
+  git_user_email: "a"
+  git_user_name: "b"
+
+repositories:
+  package_1: 
+    version: "_"
+    url: "_"
+    branch: "_"
+    tag_message: "_"
+    meta_data: []
+    dependencies: [package_2]
+
+    plugins:
+      release_modification: []
+      release_validation:
+        - validate_changelog: 
+        - validate_via_tox: {environments: [lint, mypy, test]}
+
+  package_2: 
+    version: "_"
+    url: "_"
+    branch: "_"
+    tag_message: "_"
+    meta_data: []
+    dependencies: []
+    plugins:
+
+
+  package_3:
+    version: "_"
+    url: "_"
+    branch: "_"
+    tag_message: "_"
+    meta_data: []
+    dependencies: []
+    plugins:
+
+
+  package_4:
+    version: "_"
+    url: "_"
+    branch: "_"
+    tag_message: "_"
+    meta_data: []
+    dependencies: [package_1, package_2, package_3]
+    plugins:
+
