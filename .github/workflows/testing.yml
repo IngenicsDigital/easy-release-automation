@@ -1,3 +1,14 @@
+#
+# Authors:
+#    - David Kauschke <david.kauschke@ingenics-digital.com>
+#
+# Copyright (c) 2024 Ingenics Digital GmbH
+#
+# SPDX-License-Identifier: MIT
+#
+#
+
+
 name: CI-Testing
 
 on:
@@ -6,28 +17,26 @@ on:
       - '*'
       - '*/*' # Match branches with single '/'
 
-
-#            sudo apt install -y build-essential libsystemd-dev
 jobs:
   lint:
-    name: Check code for linting issues
+    name: Run linting checks
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    - name: Linting
-      run: |
-          pip install --upgrade pip && pip install tox==4.15.0 --no-cache-dir
-          pip3 install --user tox
-          tox -e lint
-  mypy:
-    name: Check code for mypy issues
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    - name: Mypy
-      run: |
-          pip install --upgrade pip && pip install tox==4.15.0 --no-cache-dir
-          pip3 install --user tox
-          tox -e mypy
+    - uses: actions/checkout@v4
+    - run: env
+    - run: pip install tox
+    - run: tox -e lint
+  # mypy:
+  #   name: Run typing checks
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - run: pip install tox
+  #     - run: tox -e mypy
+  # pytest:
+  #   name: Run pytests checks
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - run: pip install tox
+  #     - run: tox -e test
