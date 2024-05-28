@@ -1,0 +1,40 @@
+# CI testing pipeline for checking linting, typing and pytest issues
+#
+# Authors:
+#    - David Kauschke <david.kauschke@ingenics-digital.com>
+#
+# Copyright (c) 2024 Ingenics Digital GmbH
+#
+# SPDX-License-Identifier: MIT
+#
+
+name: CI-Testing
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  lint:
+    name: Run linting checks
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - run: env
+    - run: pip install tox
+    - run: tox -e lint
+  mypy:
+    name: Run typing checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install tox
+      - run: tox -e mypy
+  pytest:
+    name: Run pytests checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install tox
+      - run: tox -e test
