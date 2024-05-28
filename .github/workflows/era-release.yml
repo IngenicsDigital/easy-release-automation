@@ -49,7 +49,7 @@ jobs:
           ${{ secrets.ERA_RELEASE_KEY }}
     - run: python3 -m venv .venv && . .venv/bin/activate && pip install . && pip install tox
     - run: |
-        source .venv/bin/activate && env && \
+        set -x && source .venv/bin/activate && \
         ERA_LOG_LEVEL=INFO easy-release-automation \
         --author "${{ github.event.inputs.RELEASE_USER_MAIL }}" \
         --email "${{ github.event.inputs.RELEASE_USER_NAME }}" \

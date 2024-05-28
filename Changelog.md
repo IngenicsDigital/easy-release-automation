@@ -9,3 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - First public preview release.
 - Added CI testing pipeline.
+
+### Fixed
+
+- Don't push stable branch if missing when ERA test mode is active.

@@ -91,8 +91,10 @@ class GitHandler:
             )
             self._repository.git.checkout(self._branches.release)
             self._repository.git.checkout("-b", self._branches.stable)
-            logger.info("Setting up upstream for branch: '%s'.", self._branches.stable)
-            self._repository.git.push("--set-upstream", "origin", self._branches.stable)
+
+            if self._global_config.test_run is False:
+                logger.info("Setting up upstream for branch: '%s'.", self._branches.stable)
+                self._repository.git.push("--set-upstream", "origin", self._branches.stable)
             return  # Return after generating new stable branch
 
         self._repository.git.merge(self._branches.release)
@@ -128,7 +130,7 @@ class GitHandler:
     def commit_stable(self):
         """Commits the stable-branch."""
         self._repository.git.checkout(self._branches.stable)
-        logger.info("Commit commit stable branch: '%s'", self._branches.stable)
+        logger.info("Commit stable branch: '%s'", self._branches.stable)
         self._commit(
             "chore: :bookmark: ERA: Release-Commit for Version: "
             f"{self._release_entry.public.version}"
