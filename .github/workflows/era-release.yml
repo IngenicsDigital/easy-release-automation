@@ -1,0 +1,58 @@
+#
+# Authors:
+#    - David Kauschke <david.kauschke@ingenics-digital.com>
+#
+# Copyright (c) 2024 Ingenics Digital GmbH
+#
+# SPDX-License-Identifier: MIT
+#
+#
+
+name: CI-ERA-Self-Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      ERA_TEST_RUN:
+        description: Enable ERA test run
+        default: "true"
+        type: string
+        required: false
+      RELEASE_USER_NAME:
+        description: ERA commits are created with this name
+        default: "David Kauschke"
+        type: string
+        required: false
+      RELEASE_USER_MAIL:
+        description: ERA commits are created with this mail
+        default: "david.kauschke@ingenics-digital.com"
+        type: string
+        required: false
+  push:
+    branches:
+      - '*'
+      - '*/*' # Match branches with single '/'
+
+env:
+  ERA_CONFIG: era/release-config.yml
+
+jobs:
+  release-era:
+    name: Release ERA by itself
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Store ERA release key to deploy ERA by itself via ssh checkout
+      uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: |
+          ${{ secrets.ERA_RELEASE_KEY }}
+    - run: python3 -m venv .venv && . .venv/bin/activate && pip install . && pip install tox
+    - run: |
+        source .venv/bin/activate && env && \
+        ERA_LOG_LEVEL=INFO easy-release-automation \
+        --author "${{ github.event.inputs.RELEASE_USER_MAIL }}" \
+        --email "${{ github.event.inputs.RELEASE_USER_NAME }}" \
+        --test ${{ github.event.inputs.ERA_TEST_RUN }} --conf ${ERA_CONFIG}
+
+
