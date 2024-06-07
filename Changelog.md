@@ -8,3 +8,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - First public preview release.
+- #1 Added CI testing pipeline.
