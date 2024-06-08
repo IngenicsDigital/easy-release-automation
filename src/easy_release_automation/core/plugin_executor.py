@@ -20,7 +20,7 @@ import logging
 import pathlib
 from typing import Optional
 
-from easy_release_automation.configuration import GlobalConfig, ReleaseEntry
+from easy_release_automation.core.configuration import GlobalConfig, ReleaseEntry
 from easy_release_automation.utils.logging_wrapper import format_minor, format_sub_chapter
 
 logger = logging.getLogger(__name__)

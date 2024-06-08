@@ -12,7 +12,7 @@ import pathlib
 
 import pytest
 
-from easy_release_automation import configuration
+from easy_release_automation.core import configuration
 
 
 def test_topological_sort():

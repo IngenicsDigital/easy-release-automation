@@ -15,7 +15,7 @@ import logging
 import pathlib
 import subprocess
 
-from easy_release_automation.configuration import GlobalConfig, ReleaseEntry
+from easy_release_automation.core.configuration import GlobalConfig, ReleaseEntry
 from easy_release_automation.interfaces.validation_interface import (
     ValidationException,
     ValidationInterface,

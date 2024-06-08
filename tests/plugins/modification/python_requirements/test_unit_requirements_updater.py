@@ -12,9 +12,13 @@ import pathlib
 
 import pytest
 
-from easy_release_automation.configuration import GlobalConfig, PublicReleaseEntry, ReleaseEntry
+from easy_release_automation.core.configuration import (
+    GlobalConfig,
+    PublicReleaseEntry,
+    ReleaseEntry,
+)
 from easy_release_automation.plugins.modification.python_requirements import requirements_updater
-from easy_release_automation.utils import plugin_executor
+from easy_release_automation.core import plugin_executor
 from tests.plugins.fixtures.default_config import default_global_config, default_release_entry
 from tests.plugins.utils import plugin_loader
 

@@ -10,7 +10,7 @@ SPDX-License-Identifier: MIT
 
 import pytest
 
-from easy_release_automation.configuration import (
+from easy_release_automation.core.configuration import (
     GlobalConfig,
     PluginEntries,
     PrivateReleaseEntry,

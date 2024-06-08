@@ -19,7 +19,7 @@ SPDX-License-Identifier: MIT
 import pathlib
 from abc import ABCMeta, abstractmethod
 
-from easy_release_automation.configuration import GlobalConfig, ReleaseEntry
+from easy_release_automation.core.configuration import GlobalConfig, ReleaseEntry
 
 
 class ModificationException(Exception):

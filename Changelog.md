@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - #2: add error handling for plugins, that are referenced in the release-config.yml, but are
   not installed (+ tests).
 
+### Changed
+
+- #4: add "./src/core" sub-folder for ERA-specific flow control to improve the overview of
+  the ERA-module
+
 ### Added
 
 - First public preview release.

@@ -16,7 +16,7 @@ import logging
 import pathlib
 import re
 
-from easy_release_automation.configuration import GlobalConfig, ReleaseEntry
+from easy_release_automation.core.configuration import GlobalConfig, ReleaseEntry
 from easy_release_automation.interfaces.modification_interface import (
     ModificationException,
     ModificationInterface,

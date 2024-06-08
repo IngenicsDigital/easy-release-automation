@@ -21,7 +21,7 @@ from dataclasses import dataclass
 import git
 import git.exc
 
-from easy_release_automation.configuration import GlobalConfig, ReleaseEntry
+from easy_release_automation.core.configuration import GlobalConfig, ReleaseEntry
 
 logger = logging.getLogger(__name__)
 
