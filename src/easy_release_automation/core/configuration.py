@@ -29,7 +29,7 @@ import pathlib
 from dataclasses import dataclass, field
 from typing import Any, Optional
 
-from easy_release_automation.utils.yaml_handler import YamlHandler
+from easy_release_automation.core.utils.yaml_handler import YamlHandler
 
 logger = logging.getLogger(__name__)
 

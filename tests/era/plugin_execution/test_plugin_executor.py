@@ -10,8 +10,8 @@ SPDX-License-Identifier: MIT
 
 import pytest
 import pathlib
-from easy_release_automation.configuration import PluginEntries
-from easy_release_automation.utils.plugin_executor import PluginExecutor, PluginExecutorError
+from easy_release_automation.core.configuration import PluginEntries
+from easy_release_automation.core.plugin_executor import PluginExecutor, PluginExecutorError
 from ..fixtures.default_config import default_release_entry, default_global_config
 
 

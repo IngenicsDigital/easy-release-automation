@@ -21,11 +21,11 @@ import pathlib
 from dataclasses import dataclass
 from typing import Optional
 
-from easy_release_automation.configuration import GlobalConfig, ReleaseEntry, get_configuration
+from easy_release_automation.core.configuration import GlobalConfig, ReleaseEntry, get_configuration
 from easy_release_automation.utils import logging_wrapper
-from easy_release_automation.utils.git_handler import GitHandler
+from easy_release_automation.core.git_handler import GitHandler
 from easy_release_automation.utils.logging_wrapper import format_chapter, format_major
-from easy_release_automation.utils.plugin_executor import PluginExecutor
+from easy_release_automation.core.plugin_executor import PluginExecutor
 
 logger = logging.getLogger(__name__)
 

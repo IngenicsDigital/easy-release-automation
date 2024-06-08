@@ -13,10 +13,10 @@ import pathlib
 import pytest
 from pytest_mock import MockFixture
 
-from easy_release_automation.configuration import GlobalConfig, ReleaseEntry
+from easy_release_automation.core.configuration import GlobalConfig, ReleaseEntry
 from easy_release_automation.interfaces.validation_interface import ValidationException
 from easy_release_automation.plugins.validation import shell_validator
-from easy_release_automation.utils import plugin_executor
+from easy_release_automation.core import plugin_executor
 from tests.plugins.utils import plugin_loader
 
 from ..fixtures.default_config import default_global_config, default_release_entry

@@ -18,7 +18,7 @@ import pathlib
 import ruamel.yaml
 from pydantic.v1.utils import deep_update
 
-from easy_release_automation.configuration import GlobalConfig, ReleaseEntry
+from easy_release_automation.core.configuration import GlobalConfig, ReleaseEntry
 from easy_release_automation.interfaces.modification_interface import ModificationInterface
 
 logger = logging.getLogger(__name__)
