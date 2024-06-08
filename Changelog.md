@@ -5,6 +5,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- #2: add error handling for plugins, that are referenced in the release-config.yml, but are
+  not installed (+ tests).
+
 ### Added
 
 - First public preview release.

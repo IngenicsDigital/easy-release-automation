@@ -29,6 +29,10 @@ MODIFICATION_ENTRYPOINT_GROUP = "repository.modification"
 VALIDATION_ENTRYPOINT_GROUP = "repository.validation"
 
 
+class PluginExecutorError(Exception):
+    """For exceptions during actions of the PluginExecutor."""
+
+
 class PluginExecutor:
     """Executor for the Plugin-Mechanism in ERA."""
 
@@ -50,6 +54,9 @@ class PluginExecutor:
             requested_entry_points: all requested entry-points (classes) that should be executed and
                 an optional dictionary, that will be handed over as a keyword arguments for the
                 entry-points run method.
+        Raises:
+            PluginExecutorError, if the specified plugin from the telematics-config.yml is not
+                existing.
         """
         # Get a dictionary of all entry points for the given group (specified in the setup.cfg)
         entry_points = self._get_entry_point_dictionary(entry_group)
@@ -57,6 +64,14 @@ class PluginExecutor:
         for entry in requested_entry_points:
             # Get entry-point name and kwargs from release-configuration
             requested_entry_point, key_word_args = next(iter(entry.items()))
+            # Validate, that entry-point exists
+            if requested_entry_point not in entry_points:
+                error_msg = (
+                    f"Unknown entry-point specified in release-config.yml: {requested_entry_point}."
+                    f" Available entry-points: {entry_points.keys()}"
+                )
+                logger.error(error_msg)
+                raise PluginExecutorError(error_msg)
             # Load entry-point.
             entry_point_class = entry_points[requested_entry_point].load()
             # Instantiate and run entry-point.
