@@ -5,17 +5,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Fixed
+### Added
 
-- #2: add error handling for plugins, that are referenced in the release-config.yml, but are
-  not installed (+ tests).
+- First public preview release.
+- #1: Added CI testing pipeline.
 
 ### Changed
 
 - #4: add "./src/core" sub-folder for ERA-specific flow control to improve the overview of
   the ERA-module
 
-### Added
+### Fixed
 
-- First public preview release.
-- #1 Added CI testing pipeline.
+- #2: add error handling for plugins, that are referenced in the release-config.yml, but are
+  not installed (+ tests).
+- #11: Don't push stable branch if missing when ERA test mode is active.
