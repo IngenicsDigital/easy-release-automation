@@ -1,10 +1,9 @@
 # Contributing to ERA
 
 [code-of-conduct]: CODE_OF_CONDUCT.md
-[getting-started]: doc/getting_started.md
+[getting-started-developer]: doc/getting_started_developer
 
-Hi there! We're thrilled that you'd like to contribute to this project. Your help is essential for
-keeping it great.
+Hi there! We appreciate your interest in contributing to our project - your support helps us maintain its quality
 
 Please note that this project is released with a [Contributor Code of Conduct][code-of-conduct].
 By participating in this project you agree to abide by its terms.
@@ -36,7 +35,7 @@ The [Git Forking Workflow](https://www.atlassian.com/git/tutorials/comparing-wor
           git remote add upstream git@github.com:IngenicsDigital/easy-release-automation.git
     ```
 
-5. Read [Getting-Started][getting-started]
+5. Read [Getting Started for Developer][getting-started-developer]
 
 ### Add a feature or fix a bug
 

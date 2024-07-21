@@ -7,13 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- First public preview release.
 - #1: Added CI testing pipeline.
+- #13: Optimise Readme and add end-user guide
+  - Add end-user guide
+  - Add simple getting-started `getting-started-release-config-simple`
+  - Add Github bug report template
 
 ### Changed
 
 - #4: add "./src/core" sub-folder for ERA-specific flow control to improve the overview of
   the ERA-module
+- #13: Optimise Readme and add end-user guide
+  - Rename getting_started to getting_started_developer
 
 ### Fixed
 
