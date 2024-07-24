@@ -1,8 +1,9 @@
 # ERA (**E**asy **R**elease **A**utomation)
 
-Imagine reducing the time and complexity of managing multiple software releases with a single click.
-That's exactly what the ERA tool does - it streamlines the auto-tagging of 10 interdependent
-repositories through an integrated CI pipeline.
+Imagine reducing the time and complexity of managing multiple software releases to a single click.
+That's exactly what the ERA tool does - it streamlines the tagging of multiple interdependent
+repositories by integrating ERA into your CI pipeline or your local development environment.
+
 This robust automation not only **saves us over four hours per release** but also simplifies our
 release process, crucial for software project with frequent monthly updates.
 
@@ -34,17 +35,19 @@ repository tags.
 
 Explore the [ERA Getting Started For End Users](doc/getting_started_end_user.md).
 This hands-on tutorial will guide you through releasing ERA and then applying it to your own Git
-repository project, all within approximately one hour.
+project, all within approximately one hour.
 
 ## What is ERA?
 
-- ERA has a `easy-release-automation` CLI entry point which utilizes a `release-config.yml` file.
-  - For an example, see [Release-Config Example](./era/release-config.yml).
-- Modifies, verifies, and tags the repositories defined in `release-config.yml`.
-- Executes customize actions via plugins specified in `release-config.yml`.
-- Provides flexibility for various use cases in automating the release process.
-- Requires two branches per repository (customized via `release-config.yml`):
-  - Default branch names: `main` and `stable`.
+- ERA provides a `easy-release-automation` CLI entry point to release multiple repositories in your project.
+- ERA configures the release process for modification, validation and tagging according to a lightweight `release-config.yml` (see [Release-Config Example](./era/release-config.yml)).
+- During the release process:
+  - ERA offers repository validation steps before a repository is tagged.
+  - ERA offers repository modification steps before and after a repository is tagged.
+  - ERA tags the repositories.
+  - ERA pushes the updated and tagged branches to the remote repository.
+- ERA offers an existing set of versatile modification and validation plugins.
+- ERA offers customization by enabling you to create your own modification and validation plugins to meet specific requirements.
 
 ERA automatically generates the following **three commit messages for each repository during the release process**:
 
