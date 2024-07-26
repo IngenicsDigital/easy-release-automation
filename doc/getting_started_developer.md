@@ -1,13 +1,10 @@
-# 1. Getting Started With ERA
-
-The current framework is derived from the PEP 517, PEP 518 and PEP621 standards, which introduce pyproject.toml
-as universal config file. See [here](https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html) for more information.
+# 1. Getting Started For Developers
 
 ## 1.1. Setting Up Project for Development
 
 ### 1.1.1. General
 
-1. Execute the setup script (it will setup a venv and install era automatically)
+1. Execute the setup script (it will setup a venv and install ERA automatically)
 
     ```bash
         ./scripts/setup-era.sh
@@ -17,7 +14,7 @@ as universal config file. See [here](https://setuptools.pypa.io/en/latest/usergu
 
 **Attention**: For the following steps you have to be inside the virtual environment!
 
-### 1.1.2. VS Code specific
+### 1.1.2. For VS Code
 
 For developing under VS code it is recommended to use the existing configuration file `settings.json`.
 The VS code configuration integrates the linting settings into the editor and allows auto-formatting on save.
@@ -31,7 +28,7 @@ Therefore, execute the tox-linting environment once:
         tox -e lint
     ```
 
-### 1.2. File-Architecture
+### 1.2. Directory Layout
 
 ```bash
     .
@@ -54,7 +51,7 @@ Therefore, execute the tox-linting environment once:
 
 ## 1.2. Guideline for Development
 
-### 1.2.1 Testing&Linting
+### 1.2.1 Testing And Linting
 
 New code contributions should only be committed and merged, when the following three commands run
 through successfully:

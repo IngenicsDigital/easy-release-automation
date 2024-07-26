@@ -47,11 +47,11 @@ Planned features: (*)
 - (+) Can be expanded by writing new Plugins via the Python Plugin mechanism.
 - (+) The Shell-Validation-Plugin denotes an open door for a broad field of commands.
 
-## Fail-Safe
+## Fail-Safety
 
 - If a release of one repository fails, the release is aborted.
 - (-) Releases that are executed prior to the failed release, are still released.
-- (*) Ability to turn back changes on the remote.
+- (*) Ability to roll back changes on the remote.
 
 ## Authentication
 

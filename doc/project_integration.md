@@ -142,7 +142,7 @@ key-word-arguments in the configuration file.
 
 ```bash
 global_config:
-  git_user_email: "John.Doe@<your-email>.de"
+  git_user_email: "John.Doe@example.com"
   git_user_name: "John.Doe"
   tag_policy: "skip"
 

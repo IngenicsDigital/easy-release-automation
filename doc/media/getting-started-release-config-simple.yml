@@ -1,0 +1,22 @@
+global_config:
+  # Global settings can be overridden by CLI parameters
+  git_user_email: "John.Doe@<your-email>.de"
+  git_user_name: "John.Doe"
+  tag_policy: "skip"
+repositories: # ERA will release all defined repos in here
+  easy-release-automation: # repo name
+    version: &easy_release_automation_version "0.1.0" # ERA will tag this repo on 0.1.0 
+    url: git@github.com:IngenicsDigital/easy-release-automation.git # url to repo
+    stable_branch: stable
+    main_branch: main
+    plugins:
+      # The flexibility of ERA comes from providing a plugin mechanism, where the developer can specify
+      # which plugins are executed to modify and validate the repository.
+      release_modification: # ERA plugins for modifying files during release process
+        - changelog_version_updater: # Modify given changelog file and update version with 0.1.0 
+            {
+              file_path_relative: "Changelog.md",
+              version: *easy_release_automation_version,
+            }
+      merge_back_finalization: # ERA plugins for adding default changes for next release on main_branch
+        - changelog_unreleased_setter: { file_path_relative: "Changelog.md" } # Add "## [Unreleased]" section

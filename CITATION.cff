@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it using these metadata."
 title: "Easy Release Automation"
-version: 1.0.0
-date-released: 2024-06-01
+version: 0.1.0
+date-released: TODO-update-for-release 0.1.0
 license: "MIT"
 copyright: "Copyright (c) 2024 Ingenics Digital GmbH"
 authors:
