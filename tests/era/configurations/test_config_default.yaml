@@ -16,7 +16,7 @@ repositories:
     branch: "_"
     tag_message: "_"
     meta_data: []
-    dependencies: [package_2]
+    dependencies: [package_2, package_4]
 
     plugins:
       release_modification: []
@@ -30,7 +30,7 @@ repositories:
     branch: "_"
     tag_message: "_"
     meta_data: []
-    dependencies: []
+    dependencies: [package_3]
     plugins:
 
 
@@ -50,6 +50,6 @@ repositories:
     branch: "_"
     tag_message: "_"
     meta_data: []
-    dependencies: [package_1, package_2, package_3]
+    dependencies: []
     plugins:
 
