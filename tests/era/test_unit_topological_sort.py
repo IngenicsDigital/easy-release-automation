@@ -24,11 +24,9 @@ def test_topological_sort():
     _, release_entries = configuration.get_file_configuration(configuration_path)
 
     predicted_order = [entry.name for entry in release_entries]
-    expected_order = ["package_2", "package_1", "package_3", "package_4"]
-
-    assert expected_order == predicted_order
-    for a, b in zip(expected_order, predicted_order):
-        assert a == b
+    assert predicted_order.index("package_1") > predicted_order.index("package_2")
+    assert predicted_order.index("package_1") > predicted_order.index("package_4")
+    assert predicted_order.index("package_2") > predicted_order.index("package_3")
 
 
 def test_error_on_bidirectional_relation():
@@ -41,4 +39,4 @@ def test_error_on_bidirectional_relation():
     with pytest.raises(configuration.ConfigurationHandlerException) as exc_info:
         configuration.get_file_configuration(configuration_path)
     # these asserts are identical; you can use either one
-    assert "Note no circular relations allowed." in exc_info.value.args[0]
+    assert "NOTE: No circular relations allowed." in exc_info.value.args[0]

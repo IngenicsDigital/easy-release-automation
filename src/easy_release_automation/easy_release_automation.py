@@ -16,6 +16,7 @@ SPDX-License-Identifier: MIT
 import argparse
 import json
 import logging
+import sys
 import os
 import pathlib
 from dataclasses import dataclass
@@ -196,8 +197,8 @@ def parse_cli_args() -> CLIArguments:
     )
 
 
-def main():
-    """Configures and Starts ERA"""
+def run_era():
+    """Configures and Runs ERA"""
 
     logging_wrapper.configure_logging(os.getenv("ERA_LOG_LEVEL", "INFO"))
 
@@ -216,6 +217,15 @@ def main():
     logging_wrapper.log_release_information(release_entries, global_config)
 
     perform_release_process(work_directory, global_config, release_entries)
+
+
+def main():
+    try:
+        run_era()
+        sys.exit(0)
+    except Exception as error:
+        logger.error(f"Error during release process: {str(error)}", exec=True)
+        sys.exit(1)
 
 
 if __name__ == "__main__":

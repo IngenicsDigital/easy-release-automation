@@ -30,6 +30,7 @@ from dataclasses import dataclass, field
 from typing import Any, Optional
 
 from easy_release_automation.core.utils.yaml_handler import YamlHandler
+import graphlib
 
 logger = logging.getLogger(__name__)
 
@@ -251,22 +252,22 @@ def topological_sort(release_entries: list[ReleaseEntry]) -> list[ReleaseEntry]:
     Returns:
         list of dependency-sorted release-entries.
     """
-    sorted_release_entries: list[ReleaseEntry] = []
-    length = len(release_entries)
-    while length > 0:
-        sorted_entry_names = [entry.name for entry in sorted_release_entries]
-        for i, entry in enumerate(release_entries):
-            if all([dep in sorted_entry_names for dep in entry.private.dependencies]):
-                sorted_release_entries.append(release_entries.pop(i))
-                break
-        new_len = len(release_entries)
-        if new_len == length:
-            raise ConfigurationHandlerException(
-                f"Unable to insort further elements: from {release_entries} to "
-                f"{sorted_release_entries}. Note no circular relations allowed."
-            )
-        length = new_len
 
-    sorted_entry_names = [entry.name for entry in sorted_release_entries]
-    logger.info("Successfully sorted release-entries topologically: %s", sorted_entry_names)
-    return sorted_release_entries
+    graph = {}
+    release_entry_lut = {}
+    for release_entry in release_entries:
+        graph[release_entry.name] = set(
+            [elem.name for elem in release_entry.private.dependencies.values()]
+        )
+        release_entry_lut[release_entry.name] = release_entry
+    sorted_entry_names = graphlib.TopologicalSorter(graph).static_order()
+    try:
+        sorted_entries = [release_entry_lut[name] for name in sorted_entry_names]
+    except graphlib.CycleError as error:
+        raise ConfigurationHandlerException(
+            f"Failed to perform topological sort due to error: {str(error)}"
+            "NOTE: No circular relations allowed."
+        ) from error
+    logger.info("Successfully sorted release-entries: %s", sorted_entry_names)
+
+    return sorted_entries

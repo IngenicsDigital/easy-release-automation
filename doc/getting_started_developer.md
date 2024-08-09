@@ -41,10 +41,7 @@ Therefore, execute the tox-linting environment once:
     |── tox.ini                     // configure tox
     ├── scripts
     │   └── setup-era.sh            // setup era locally development env with script
-    ├── doc                         // markdown documentation
-    ├── docker
-    │   ├── docker-compose-test.yml // ERA can also be tested inside docker itself
-    └── └── Dockerfile.testpipeline // Dockerfile which is used by docker-compose-test.yml
+    └── doc                         // markdown documentation
 ```
 
 [comment]: <> (tree /f . -I 'tests|tcucore|conf|doc|artifacts|tcucore.egg-info')
@@ -62,14 +59,6 @@ through successfully:
     tox -e lint
     tox -e mypy
     tox -e test
-```
-
-- *Alternatively*: Test to run them via Docker
-
-```bash
-    docker-compose -f docker/docker-compose-test.yml run --rm era-test-env tox -e lint
-    docker-compose -f docker/docker-compose-test.yml run --rm era-test-env tox -e mypy
-    docker-compose -f docker/docker-compose-test.yml run --rm era-test-env tox -e test
 ```
 
 If those commands do not have a successful result, the CI-Pipeline will indicate errors.
