@@ -7,7 +7,7 @@
 1. Execute the setup script (it will setup a venv and install ERA automatically)
 
     ```bash
-        ./scripts/setup-era.sh
+        ./scripts/setup-era-dev.sh
     ```
 
 2. Check if you are inside the `.venv` otherwise use `. .venv/bin/activate` for activation
@@ -40,7 +40,9 @@ Therefore, execute the tox-linting environment once:
     ├── requirements-test.txt       // packages required for testing
     |── tox.ini                     // configure tox
     ├── scripts
-    │   └── setup-era.sh            // setup era locally development env with script
+    │   ├── era-test-release.sh     // execute test release with script
+    │   ├── setup-era-prod.sh       // setup era local production env with script
+    │   └── setup-era-dev.sh        // setup era local development env with script
     └── doc                         // markdown documentation
 ```
 
