@@ -26,19 +26,16 @@ from easy_release_automation.core.configuration import GlobalConfig, ReleaseEntr
 logger = logging.getLogger(__name__)
 
 
-class GitHandlerException(Exception):
-    """Thrown if an exception within the GIT-Handler occurs."""
+@dataclass
+class BranchNames:
+    main: str
+    stable: str
+    release: str = "era_release_branch"
+    merge_back: str = "era_merge_back_branch"
 
 
 class GitHandler:
     """Handles all git-related actions for a given repository configuration."""
-
-    @dataclass
-    class BranchNames:
-        main: str
-        stable: str
-        release: str = "era_release_branch"
-        merge_back: str = "era_merge_back_branch"
 
     def __init__(
         self, release_entry: ReleaseEntry, global_config: GlobalConfig, repository_dir: pathlib.Path
@@ -51,7 +48,7 @@ class GitHandler:
         self._global_config = global_config
         self._repository_dir = repository_dir
 
-        self._branches = self.BranchNames(
+        self._branches = BranchNames(
             release_entry.public.main_branch, release_entry.public.stable_branch
         )
 

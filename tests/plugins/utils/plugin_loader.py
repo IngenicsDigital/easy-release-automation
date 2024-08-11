@@ -14,10 +14,7 @@ import importlib.metadata
 def load_plugin_class(entry_point_name: str, entry_point_group: str):
     """Returns the loaded entrypoint/plugin-class for the given group and name."""
     entry_points = importlib.metadata.entry_points()[entry_point_group]
-    try:
-        entry_point = next(
-            entry_point for entry_point in entry_points if entry_point.name == entry_point_name
-        )
-    except StopIteration:
-        assert False, "Plugin not Found."
-    return entry_point.load()
+    for entry_point in entry_points:
+        if entry_point.name == entry_point_name:
+            return entry_point.load()
+    raise RuntimeError(f"Plugin not found. {entry_point_name=}, {entry_point_group=}")

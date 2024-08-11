@@ -15,9 +15,8 @@ echo "Setup venv for ERA"
 
 python3 -m venv .venv
 . .venv/bin/activate
-pip install .
+pip install . -e
 pip install -r requirements-test.txt
-pip install tox==4.15.0
 tox -e lint
 echo "Setup venv for ERA completed"
 
