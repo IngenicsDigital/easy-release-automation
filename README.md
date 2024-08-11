@@ -113,7 +113,7 @@ graph LR
 
 ### Does ERA Natively Run On Windows?
 
-ERA is primarily developed and used on Linux developer machines (see `scripts/setup-era.sh`) or in CI environment with Linux agents.
+ERA is primarily developed and used on Linux developer machines (see `scripts/setup-era-dev.sh`) or in CI environment with Linux agents.
 
 ERA operates in the following environments:
 

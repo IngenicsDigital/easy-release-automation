@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Build development environment and execute ERA test release
 #
 # Copyright (c) 2024 Ingenics Digital GmbH
 # 
@@ -10,20 +11,12 @@
 set -e
 [ "$DEBUG" = 1 ] && set -x
 
-
-echo "Setup venv for ERA"
-
-python3 -m venv .venv
-. .venv/bin/activate
-pip install . -e
-pip install -r requirements-test.txt
-tox -e lint
-echo "Setup venv for ERA completed"
-
-echo "Run ERA in test mode natively"
+# Setup dev-environment
+echo $(dirname ${BASH_SOURCE[0]})/setup-era-dev.sh
 
 GIT_USER=$(git config user.name)
 GIT_MAIL=$(git config user.email)
+
 # Print the values to verify
 echo "Git User Name: $GIT_USER"
 echo "Git User Email: $GIT_MAIL"

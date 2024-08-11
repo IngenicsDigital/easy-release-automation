@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - Use 'graphlib' module for the topological sort algorithm.
   - Add editable option for installing ERA via setup-era.sh script.
   - Add return codes to the command line interface.
+- #17: Split ./scripts/setup-era.sh into multiple scripts and execute smoke test for each of them.
 
 ### Fixed
 
