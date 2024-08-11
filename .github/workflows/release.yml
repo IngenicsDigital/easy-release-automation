@@ -1,0 +1,61 @@
+# CI-ERA-Self-Release pipeline for releasing ERA itself
+#
+# Authors:
+#    - David Kauschke <david.kauschke@ingenics-digital.com>
+#
+# Copyright (c) 2024 Ingenics Digital GmbH
+#
+# SPDX-License-Identifier: MIT
+#
+
+name: CI-ERA-Self-Release
+
+on:
+  workflow_dispatch:
+    inputs:
+        RELEASE_USER_MAIL:
+          description: ERA commits are created with this mail
+          default: "david.kauschke@ingenics-digital.com"
+          type: string
+          required: false
+        RELEASE_USER_NAME:
+          description: ERA commits are created with this name
+          default: "David Kauschke"
+          type: string
+          required: false
+        ERA_TEST_RUN:
+          description: Enable ERA test run
+          default: "true"
+          type: string
+          required: false
+  push:
+    branches:
+      - '*'
+      - '*/*' # Match branches with single '/'
+
+env:
+  ERA_CONFIG: era/release-config.yml
+
+jobs:
+  release-era:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Store ERA release key to deploy ERA by itself via ssh checkout
+      uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: |
+          ${{ secrets.ERA_RELEASE_KEY }}
+    - run: python3 -m venv .venv && . .venv/bin/activate && pip install . && pip install -r requirements-test.txt
+    # NOTE: Default values must be set in case when release pipeline should be triggered by git push event because
+    # `workflow_dispatch` parameters aren't parsed by git push event.
+    # More details: https://docs.github.com/en/enterprise-cloud@latest/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#workflow_dispatch
+    - name: Use default variables when variables are missing from manually triggered workflow via Github browser interface
+      run: |
+        echo "RELEASE_USER_MAIL=${{ github.event.inputs.RELEASE_USER_MAIL || '"david.kauschke@ingenics-digital.com"' }}" >> $GITHUB_ENV && \
+        echo "RELEASE_USER_NAME=${{ github.event.inputs.RELEASE_USER_NAME || '"David Kauschke"' }}" >> $GITHUB_ENV && \
+        echo "ERA_TEST_RUN=${{ github.event.inputs.ERA_TEST_RUN || '"true"' }}" >> $GITHUB_ENV
+    - run: |
+        source .venv/bin/activate && \
+        easy-release-automation --author "${RELEASE_USER_NAME}" --email "${RELEASE_USER_MAIL}" \
+            --test "${ERA_TEST_RUN}" --conf ${ERA_CONFIG}

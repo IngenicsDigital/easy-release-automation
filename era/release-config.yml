@@ -15,7 +15,7 @@ global_config:
 
 repositories:
   easy-release-automation:
-    version: &easy_release_automation_version "0.4.0.dev0"
+    version: &easy_release_automation_version "0.1.0"
     url: git@github.com:IngenicsDigital/easy-release-automation.git
     stable_branch: stable
     main_branch: main
@@ -30,8 +30,8 @@ repositories:
         - regex_replacer: 
             { 
               file_path_relative: "pyproject.toml",
-              regex: 'version = "0.4.0.dev0"',
-              replacement: 'version = "0.4.0.dev0"',
+              regex: 'version = "0.1.0"',
+              replacement: 'version = "0.1.0"',
             }
       release_validation:
         - validate_via_shell: { command: ["tox", "-e", "lint"] }

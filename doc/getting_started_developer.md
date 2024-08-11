@@ -44,8 +44,6 @@ Therefore, execute the tox-linting environment once:
     └── doc                         // markdown documentation
 ```
 
-[comment]: <> (tree /f . -I 'tests|tcucore|conf|doc|artifacts|tcucore.egg-info')
-
 ## 1.2. Guideline for Development
 
 ### 1.2.1 Testing And Linting
