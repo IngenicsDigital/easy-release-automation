@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "easy_release_automation"
-version = "0.4.0.dev0"
+version = "0.1.0"
 authors = [
   { name = "Claus Seibold", email = "claus.seibold@ingenics-digital.com" },
   { name = "David Kauschke", email = "david.kauschke@ingenics-digital.com" },

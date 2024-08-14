@@ -21,7 +21,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - run: env
     - run: pip install tox
     - run: tox -e lint
   mypy:
