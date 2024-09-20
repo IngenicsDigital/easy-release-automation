@@ -92,7 +92,7 @@ pydantic-core==2.18.2
     # via pydantic
 pyflakes==2.2.0
     # via flake8
-pygments==2.13.0
+Pygments ~> 2.15.0
     # via flakehell
 pyproject-api==1.6.1
     # via tox
