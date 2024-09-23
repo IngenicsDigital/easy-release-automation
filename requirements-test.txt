@@ -92,7 +92,7 @@ pydantic-core==2.18.2
     # via pydantic
 pyflakes==2.2.0
     # via flake8
-Pygments ~> 2.15.0
+Pygments > 2.15.0
     # via flakehell
 pyproject-api==1.6.1
     # via tox
@@ -146,11 +146,11 @@ typing-extensions==4.11.0
     #   mypy
     #   pydantic
     #   pydantic-core
-urllib3 ~> 1.26.19
+urllib3 > 1.26.19
     # via flakehell
 virtualenv==20.26.1
     # via tox
-wheel ~> 0.38.1
+wheel > 0.38.1
     # via pip-tools
 
 # The following packages are considered to be unsafe in a requirements file:
