@@ -6,7 +6,7 @@
 #
 annotated-types==0.6.0
     # via pydantic
-build==1.0.3
+build==1.2.2
     # via pip-tools
 click==8.1.7
     # via pip-tools
@@ -14,7 +14,7 @@ gitdb==4.0.10
     # via gitpython
 gitpython==3.1.43
     # via easy_release_automation (pyproject.toml)
-packaging==23.1
+packaging==24.1
     # via build
 pip-tools==7.4.1
     # via easy_release_automation (pyproject.toml)
@@ -22,7 +22,7 @@ pydantic==2.7.1
     # via easy_release_automation (pyproject.toml)
 pydantic-core==2.18.2
     # via pydantic
-pyproject-hooks==1.0.0
+pyproject-hooks==1.2.0
     # via
     #   build
     #   pip-tools
@@ -34,16 +34,19 @@ ruamel-yaml-clib==0.2.8
     # via ruamel-yaml
 smmap==5.0.1
     # via gitdb
-tomli==2.0.1
+tomli==2.0.2
     # via
     #   build
     #   pip-tools
-    #   pyproject-hooks
 tomlkit==0.12.5
     # via easy_release_automation (pyproject.toml)
 typing-extensions==4.11.0
     # via
     #   pydantic
     #   pydantic-core
-wheel==0.41.2
+wheel==0.44.0
     # via pip-tools
+
+# The following packages are considered to be unsafe in a requirements file:
+# pip
+# setuptools

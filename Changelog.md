@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - Add Github bug report template
 - #7: Added CI-ERA-Self-Release pipeline
 - Added daily CI scheduler
+- Added pull request template
 
 ### Changed
 
@@ -25,6 +26,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - Use 'graphlib' module for the topological sort algorithm.
   - Add editable option for installing ERA via setup-era.sh script.
   - Add return codes to the command line interface.
+- Prepare ERA for deploying to pypi
+  - Fix MIT license identifier
+  - Loose fixed dependencies in pyproject.toml otherwise dependencies issue might be occur if installed via pip install
 
 ### Fixed
 
