@@ -6,7 +6,7 @@
 #
 annotated-types==0.6.0
     # via pydantic
-attrs==22.1.0
+attrs==24.2.0
     # via pytest
 black==24.4.2
     # via easy_release_automation (pyproject.toml)
@@ -14,7 +14,7 @@ build==1.2.1
     # via
     #   easy_release_automation (pyproject.toml)
     #   pip-tools
-cachetools==5.3.3
+cachetools==5.5.0
     # via tox
 chardet==5.2.0
     # via tox
@@ -26,7 +26,7 @@ colorama==0.4.6
     # via
     #   flakehell
     #   tox
-coverage==6.5.0
+coverage==7.6.1
     # via pytest-cov
 deepdiff==7.0.1
     # via easy_release_automation (pyproject.toml)
@@ -34,7 +34,7 @@ distlib==0.3.8
     # via virtualenv
 entrypoints==0.4
     # via flakehell
-filelock==3.14.0
+filelock==3.16.1
     # via
     #   tox
     #   virtualenv
@@ -48,7 +48,7 @@ gitdb==4.0.9
     # via gitpython
 gitpython==3.1.43
     # via easy_release_automation (pyproject.toml)
-iniconfig==1.1.1
+iniconfig==2.0.0
     # via pytest
 license-header-check==0.2.1
     # via easy_release_automation (pyproject.toml)
@@ -69,11 +69,11 @@ packaging==24.0
     #   pyproject-api
     #   pytest
     #   tox
-pathspec==0.10.1
+pathspec==0.12.1
     # via black
 pip-tools==7.4.1
     # via easy_release_automation (pyproject.toml)
-platformdirs==4.2.1
+platformdirs==4.3.6
     # via
     #   black
     #   tox
@@ -92,7 +92,7 @@ pydantic-core==2.18.2
     # via pydantic
 pyflakes==2.2.0
     # via flake8
-pygments==2.13.0
+pygments==2.18.0
     # via flakehell
 pyproject-api==1.6.1
     # via tox
@@ -111,7 +111,7 @@ pytest-cov==2.12.1
     # via easy_release_automation (pyproject.toml)
 pytest-html==3.1.1
     # via easy_release_automation (pyproject.toml)
-pytest-metadata==2.0.2
+pytest-metadata==3.1.1
     # via pytest-html
 pytest-mock==3.1.1
     # via easy_release_automation (pyproject.toml)
@@ -146,13 +146,9 @@ typing-extensions==4.11.0
     #   mypy
     #   pydantic
     #   pydantic-core
-urllib3==1.26.12
+urllib3==2.2.3
     # via flakehell
-virtualenv==20.26.1
+virtualenv==20.26.6
     # via tox
-wheel==0.37.1
+wheel==0.44.0
     # via pip-tools
-
-# The following packages are considered to be unsafe in a requirements file:
-# pip
-# setuptools
