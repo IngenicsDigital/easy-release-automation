@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - Add simple getting-started `getting-started-release-config-simple`
   - Add Github bug report template
 - #7: Added CI-ERA-Self-Release pipeline
+- Added daily CI scheduler
 
 ### Changed
 
