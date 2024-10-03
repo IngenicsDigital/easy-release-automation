@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - #2: add error handling for plugins, that are referenced in the release-config.yml, but are
   not installed (+ tests).
 - #11: Don't push stable branch if missing when ERA test mode is active.
+- Fixed security issues mention by Github Dependabot
 
 ### Removed
 
