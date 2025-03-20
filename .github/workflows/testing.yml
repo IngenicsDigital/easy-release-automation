@@ -12,19 +12,19 @@ name: CI-Testing
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * 0"
   push:
     branches:
-      - '*'
+      - "*"
 
 jobs:
   lint:
     name: Run linting checks
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - run: pip install tox
-    - run: tox -e lint
+      - uses: actions/checkout@v4
+      - run: pip install tox
+      - run: tox -e lint
   mypy:
     name: Run typing checks
     runs-on: ubuntu-latest
