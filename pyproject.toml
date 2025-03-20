@@ -10,6 +10,7 @@ authors = [
   { name = "David Kauschke", email = "david.kauschke@ingenics-digital.com" },
   { name = "Martin Lautenbacher", email = "martin.lautenbacher@ingenics-digital.com" },
 ]
+license = "MIT"
 
 description = "Easy-Release-Automation for Multi-Package-Versioning."
 readme = { file = "README.md", content-type = "text/markdown" }
@@ -22,7 +23,6 @@ keywords = [
 ]
 classifiers = [
   "Programming Language :: Python :: 3",
-  "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
 ]
 
