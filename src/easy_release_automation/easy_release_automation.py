@@ -224,7 +224,7 @@ def main():
         run_era()
         sys.exit(0)
     except Exception as error:
-        logger.error(f"Error during release process: {str(error)}", exec=True)
+        logger.error("Error during release process:", exc_info=error)
         sys.exit(1)
 
 
